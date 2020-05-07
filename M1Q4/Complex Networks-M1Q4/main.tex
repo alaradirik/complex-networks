@@ -1,0 +1,44 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[]{amsthm} 
+\usepackage[]{amssymb} 
+\usepackage{amsmath}
+\usepackage[nottoc]{tocbibind}
+
+\DeclareRobustCommand{\divby}{%
+  \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+\title{Midterm 1 - Q4}
+\author{Alara Dirik}
+\date\today
+
+\begin{document}
+\maketitle 
+
+\subsection*{Problem}
+The "Finding and Evaluating Community Structure in Networks" paper by Newman and Girvan {\bf \cite{Newman2004FindingAE}} introduces modularity Q for the first time, however the description of Q in the paper is not clear. Do some research and then describe it in a better way.
+
+
+\subsection*{Answer}
+
+The paper by Newman and Girvan uses modularity Q as a metric to determine the number of clusters in a given network. Given a network divided into $\ell$ communities $\left\{c_{1}, \ldots, c_{\ell}\right\}$, the modularity of this parrticular division is the number of edges within the communities minus the expected number of edges within the communities if the edges were distributed at random {\bf \cite{Newman2016CommunityDI}}. \newline
+
+\noindent
+Modularity can be formulated as 
+$Q=\frac{1}{2 m} \sum_{i j}\left[A_{i j}-\frac{k_{i} k_{j}}{2 m}\right] \delta\left(c_{i}, c_{j}\right)$ where,
+
+\begin{itemize}
+    \item $m$ is the number of edges
+    \item $A$ is the adjacency matrix
+    \item $k_{i}$ is the degree of node $i$
+    \item $c_{i}$ is the community ID of node $i$
+\end{itemize}
+
+\noindent
+Intuitively, modularity Q lies between $[-1, 1]$ and is positive if the number of edges within groups exceeds the expected number edges. $0.3 < Q < 0.7$ denotes significant community structure, thus modularity Q can be directly optimized to detect communities in a network.
+
+\nocite{*}
+\bibliographystyle{unsrt}
+\bibliography{references}
+\end{document}
