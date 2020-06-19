@@ -1,0 +1,85 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[]{amsthm} 
+\usepackage[]{amssymb} 
+\usepackage{amsmath}
+\usepackage[nottoc]{tocbibind}
+
+\DeclareRobustCommand{\divby}{%
+  \mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+\title{Midterm 1 - Q1}
+\author{Alara Dirik}
+\date\today
+
+\begin{document}
+\maketitle 
+
+\section*{Problem}
+Given a ring lattice network with {\it n} vertices and degree of {\it k}, compute the average distance of the network. Assume the network is regular, unweighted and undirected.
+
+\subsection*{Solution}
+Given a ring lattice with n vertices and degree k, 
+\[
+d_{ave} = \frac{(\sum\limits_{i=1}^\alpha i*k) + (\alpha + 1) * \beta}{n-1}
+\]
+where $\ \alpha, \beta \in \mathbb{Z}$, $\ \alpha \in [1, \infty)$ and $\ \beta \in [0, k)$.
+\begin{proof}
+For any network with n vertices, the average distance is:
+\[
+d_{ave} = \frac{\sum\limits_{i} \sum\limits_{j, j<i} d_{ij}}{\binom{n}{2}}
+\]
+where the nominator is the sum of shortest paths between all pairs of vertices in the network and the denominator is the number of vertex pairs in the network. The shortest path between two vertices i and j is given below.
+\[
+    d_{ij}= 
+\begin{cases}
+     min(l(p)),& \text{if at least one path p exists}\\
+     +\infty,& \text{otherwise}
+\end{cases}
+\]
+Furthermore, in a regular ring lattice:
+\begin{itemize}
+\item Each vertex is connected to k other vertices, $deg(v) = k$ for $v \in V$, $k \in [0, n)$.
+\item Each vertex on the ring is connected to k/2 vertices to its left and right. 
+\item The maximum degree of the network is $k_{max}$:
+\[
+    k_{max}= 
+\begin{cases}
+     n-2,& \text{if } n_{even}\\
+     n-1,& \text{if } n_{odd}
+\end{cases}
+\]
+\end{itemize}
+Thus, the relationship between the number of vertices n and the degree k can be expressed as:
+\[
+n-1 = \alpha * k + \beta \text{ where } \alpha \text{, } \beta \in \mathbb{Z} \text{, } \alpha \in [1, \infty) \text{ and } \beta \in [0, k).
+\]
+And the distance between any given pair of vertices i and j is:
+\[
+    d_{ij}= 
+\begin{cases}
+     1,& \text{if } j \in {N_{a}(i) \text{ for any } a \in (0, k]}\\
+     2,& \text{if } j \in {N_{a}(i) \text{ for any } a \in (k, 2*k]}\\
+     ...\\
+     \alpha,& \text{if } j \in {N_{a}(i) \text{ for any } a \in ((\alpha-1)*k, \alpha*k]}\\
+     \alpha+1,& \text{if } j \in {N_{a}(i) \text{ for any } a \in (\alpha*k, n-1]}
+\end{cases}
+\]
+Each vertex i has k edges with $d_{ij}=1$, $d_{ij}=2$, ..., $d_{ij}=\alpha$ and $\beta$ edges with $d_{ij}=\alpha+1$. Thus the total distance in a ring lattice network can be expressed as
+\[
+    d_{total}= \frac{n*[(\sum\limits_{i=1}^\alpha i*k) + (\alpha + 1) * \beta]}{2}
+\]
+and the average distance is
+\[
+d_{ave} = \frac{\frac{n*[(\sum\limits_{i=1}^\alpha i*k) + (\alpha + 1) * \beta]}{2}}{\binom{n}{2}} = [(\sum\limits_{i=1}^\alpha i*k) + (\alpha + 1) * \beta] * \frac{n}{2} * \frac{2}{n * (n-1)}
+\]
+\[
+d_{ave} = \frac{(\sum\limits_{i=1}^\alpha i*k) + (\alpha + 1) * \beta}{n-1}
+\]
+\end{proof}
+
+\nocite{*}
+\bibliographystyle{unsrt}
+\bibliography{references}
+\end{document}
